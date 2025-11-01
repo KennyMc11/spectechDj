@@ -1,0 +1,266 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Создать объявление{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Аренда спецтехники</h1>
+            <p>Создайте объявление всего за несколько минут</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="step-indicators">
+                <div class="progress-bar" id="progress-bar" style="width: 25%;"></div>
+                <div class="step-indicator active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Тип техники</div>
+                </div>
+                <div class="step-indicator" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Описание</div>
+                </div>
+                <div class="step-indicator" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Условия</div>
+                </div>
+                <div class="step-indicator" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Публикация</div>
+                </div>
+            </div>
+        </div>
+
+        <form id="rental-form" class="form-steps">
+            <!-- Шаг 1: Тип техники -->
+            <div class="form-step active" id="step-1">
+                <h2 class="step-title-large"><i class="fas fa-truck-monster"></i> Выберите тип техники</h2>
+
+                <div class="form-group">
+                    <label>Категория</label>
+                    <div class="card-grid">
+                        <div class="card-option" data-value="excavator">
+                            <i class="fas fa-digging"></i>
+                            <div class="option-title">Экскаватор</div>
+                            <div class="option-desc">Погрузчики, мини-экскаваторы</div>
+                        </div>
+                        <div class="card-option" data-value="crane">
+                            <i class="fas fa-truck-crane"></i>
+                            <div class="option-title">Кран</div>
+                            <div class="option-desc">Автокраны, башенные краны</div>
+                        </div>
+                        <div class="card-option" data-value="bulldozer">
+                            <i class="fas fa-tractor"></i>
+                            <div class="option-title">Бульдозер</div>
+                            <div class="option-desc">Гусеничные, колесные</div>
+                        </div>
+                        <div class="card-option" data-value="loader">
+                            <i class="fas fa-truck-loading"></i>
+                            <div class="option-title">Погрузчик</div>
+                            <div class="option-desc">Фронтальные, телескопические</div>
+                        </div>
+                        <div class="card-option" data-value="concrete">
+                            <i class="fas fa-mixer"></i>
+                            <div class="option-title">Бетонная техника</div>
+                            <div class="option-desc">Миксеры, бетононасосы</div>
+                        </div>
+                        <div class="card-option" data-value="other">
+                            <i class="fas fa-tools"></i>
+                            <div class="option-title">Другое</div>
+                            <div class="option-desc">Иная спецтехника</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="brand">Марка техники</label>
+                    <select id="brand" class="form-control" required>
+                        <option value="">Выберите марку</option>
+                        <option value="jcb">JCB</option>
+                        <option value="caterpillar">Caterpillar</option>
+                        <option value="komatsu">Komatsu</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="hitachi">Hitachi</option>
+                        <option value="hyundai">Hyundai</option>
+                        <option value="other">Другая марка</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <div></div>
+                    <button type="button" class="btn btn-primary btn-next" data-next="2">
+                        Далее
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Шаг 2: Описание -->
+            <div class="form-step" id="step-2">
+                <h2 class="step-title-large"><i class="fas fa-file-alt"></i> Опишите вашу технику</h2>
+
+                <div class="form-group">
+                    <label for="condition">Состояние техники</label>
+                    <div class="btn-group">
+                        <button type="button" class="btn-option" data-value="excellent">Отличное</button>
+                        <button type="button" class="btn-option" data-value="good">Хорошее</button>
+                        <button type="button" class="btn-option" data-value="satisfactory">Удовлетворительное</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Год выпуска</label>
+                    <select id="year" class="form-control" required>
+                        <option value="">Выберите год</option>
+                        <!-- Годы будут добавлены через JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Фотографии техники</label>
+                    <div class="image-upload" id="image-upload">
+                        <div>
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Перетащите сюда фотографии или нажмите для загрузки</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px; color: var(--dark-gray);">Рекомендуется
+                                загружать не менее 3 фотографий</p>
+                        </div>
+                        <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+                    </div>
+                    <div class="image-preview" id="image-preview"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary btn-prev" data-prev="1">
+                        <span class="btn-icon">←</span>
+                        Назад
+                    </button>
+                    <button type="button" class="btn btn-primary btn-next" data-next="3">
+                        Далее
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Шаг 3: Условия -->
+            <div class="form-step" id="step-3">
+                <h2 class="step-title-large"><i class="fas fa-tag"></i> Условия аренды</h2>
+
+                <div class="form-group">
+                    <label for="price">Стоимость аренды</label>
+                    <div class="price-container">
+                        <div class="price-input">
+                            <span class="currency">₽</span>
+                            <input type="number" id="price" class="form-control" placeholder="0" required>
+                        </div>
+                        <div class="price-period">
+                            <select id="period">
+                                <option value="hour">в час</option>
+                                <option value="shift">за смену</option>
+                                <option value="day">в сутки</option>
+                                <option value="week">в неделю</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Местоположение</label>
+                    <input type="text" id="location" class="form-control" placeholder="Город, район" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Минимальный срок аренды</label>
+                    <div class="btn-group">
+                        <button type="button" class="btn-option" data-value="1">1 смена</button>
+                        <button type="button" class="btn-option" data-value="3">3 смены</button>
+                        <button type="button" class="btn-option" data-value="7">1 неделя</button>
+                        <button type="button" class="btn-option" data-value="30">1 месяц</button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary btn-prev" data-prev="2">
+                        <span class="btn-icon">←</span>
+                        Назад
+                    </button>
+                    <button type="button" class="btn btn-primary btn-next" data-next="4">
+                        Далее
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Шаг 4: Публикация -->
+            <div class="form-step" id="step-4">
+                <h2 class="step-title-large"><i class="fas fa-check-circle"></i> Проверьте информацию</h2>
+
+                <div class="form-group">
+                    <div class="summary-item">
+                        <div class="summary-label">Тип техники:</div>
+                        <div class="summary-value" id="summary-category">-</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="summary-label">Марка:</div>
+                        <div class="summary-value" id="summary-brand">-</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="summary-label">Состояние:</div>
+                        <div class="summary-value" id="summary-condition">-</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="summary-label">Год выпуска:</div>
+                        <div class="summary-value" id="summary-year">-</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="summary-label">Стоимость:</div>
+                        <div class="summary-value" id="summary-price">-</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="summary-label">Местоположение:</div>
+                        <div class="summary-value" id="summary-location">-</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <div class="summary-label">Фотографии:</div>
+                        <div class="summary-value">
+                            <div class="summary-images" id="summary-images"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-phone">Телефон для связи</label>
+                    <input type="tel" id="contact-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX" required>
+                </div>
+
+                <div class="form-group">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <input type="checkbox" id="agree-terms" required style="margin-top: 3px;">
+                        <label for="agree-terms" style="font-weight: normal;">Я согласен с условиями использования и
+                            подтверждаю достоверность указанной информации</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary btn-prev" data-prev="3">
+                        <span class="btn-icon">←</span>
+                        Назад
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Опубликовать
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'main/js/create_ad.js' %}" defer></script>
+{% endblock %}

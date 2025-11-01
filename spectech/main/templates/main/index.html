@@ -1,0 +1,104 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Главня страница{% endblock %}
+
+{% block content %}
+<!-- Поиск -->
+<section class="search-panel">
+    <div class="container">
+        <form class="filters" role="search">
+            <input type="search" placeholder="Поиск техники..." />
+            <select>
+                <option>Категория</option>
+                <option>Манипуляторы</option>
+                <option>Экскаваторы</option>
+                <option>Автокраны</option>
+                <option>Автовышки</option>
+            </select>
+            <select>
+                <option>Город</option>
+                <option>Тюмень</option>
+                <option>Москва</option>
+                <option>Егатеринбург</option>
+                <option>Уфа</option>
+            </select>
+            <button class="btn btn-primary">Найти</button>
+        </form>
+    </div>
+</section>
+
+<!-- Категории -->
+<section class="categories container">
+    <h2>Категории техники</h2>
+    <div class="grid categories-grid">
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/manipulyator.png' %}" alt="">
+            <span>Манипуляторы</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/ekskovator.jpg' %}" alt="">
+            <span>Экскаваторы</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/avtokran.png' %}" alt="">
+            <span>Автокраны</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/avtovishka.png' %}" alt="">
+            <span>Автовышки</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/samosval.png' %}" alt="">
+            <span>Самосвалы</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/burovaya.jpg' %}" alt="">
+            <span>Буровые установки</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/asenizator.png' %}" alt="">
+            <span>Ассенизаторы</span>
+        </a>
+        <a class="cat-card" href="#">
+            <img src="{% static 'main/img/pogruzchik.jpg' %}" alt="">
+            <span>Фронтальные погрузчики</span>
+        </a>
+    </div>
+</section>
+
+<!-- Популярные -->
+<section class="popular container">
+    <h2>Популярные объявления</h2>
+    <div class="grid listings-grid">
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Манипулятор+5т" alt="">
+            <div class="info">
+                <h3>Манипулятор 5т</h3>
+                <p>Москва • от 3 500 ₽/смена</p>
+            </div>
+        </article>
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Экскаватор+JCB" alt="">
+            <div class="info">
+                <h3>Экскаватор JCB 3CX</h3>
+                <p>СПБ • от 5 500 ₽/смена</p>
+            </div>
+        </article>
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Автокран+25т" alt="">
+            <div class="info">
+                <h3>Автокран 25т</h3>
+                <p>Нижний Новгород • от 12 000 ₽/смена</p>
+            </div>
+        </article>
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Автовышка+28м" alt="">
+            <div class="info">
+                <h3>Автовышка 28 м</h3>
+                <p>Казань • от 7 800 ₽/смена</p>
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

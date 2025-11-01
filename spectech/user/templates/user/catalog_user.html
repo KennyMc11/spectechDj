@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Каталог пользователя{% endblock %}
+
+{% block content %}
+<section class="popular container">
+    <h2>Каталог</h2>
+    <div class="grid listings-grid">
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Манипулятор+5т" alt="">
+            <div class="info">
+                <h3>Манипулятор 5т</h3>
+                <p>Москва • от 3 500 ₽/смена</p>
+            </div>
+        </article>
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Экскаватор+JCB" alt="">
+            <div class="info">
+                <h3>Экскаватор JCB 3CX</h3>
+                <p>СПБ • от 5 500 ₽/смена</p>
+            </div>
+        </article>
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Автокран+25т" alt="">
+            <div class="info">
+                <h3>Автокран 25т</h3>
+                <p>Нижний Новгород • от 12 000 ₽/смена</p>
+            </div>
+        </article>
+        <article class="listing">
+            <img src="https://via.placeholder.com/400x260?text=Автовышка+28м" alt="">
+            <div class="info">
+                <h3>Автовышка 28 м</h3>
+                <p>Казань • от 7 800 ₽/смена</p>
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

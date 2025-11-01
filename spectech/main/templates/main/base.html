@@ -1,0 +1,138 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/create_ad.css' %}">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24">
+          <rect width="24" height="24" rx="3" fill="#111" />
+          <path d="M2 18h20v2H2z" fill="#FFD200" />
+          <text x="4" y="16" font-family="sans-serif" font-size="10" fill="#fff">ST</text>
+        </svg>
+        <span class="logo-text">SpecTrade</span>
+      </a>
+
+      <!-- Навигация -->
+      <nav class="main-nav">
+        <a href="{% url 'home' %}" class="active">Главная</a>
+        <a href="#">Каталог</a>
+        <a href="#">❤ Избранное</a>
+        <a href="#">➕️ Разместить</a>
+        <div class="main-nav-login">
+          <label for="modal-toggle" style="cursor: pointer;">Вход и регистрация</label>
+        </div>
+      </nav>
+
+      <!-- Гамбургер -->
+      <button class="menu-toggle" aria-label="Меню">☰</button>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <nav class="mobile-nav">
+    <a href="{% url 'home' %}" class="active">Главная</a>
+    <a href="#">Каталог</a>
+    <a href="#">❤ Избранное</a>
+    <a href="#">+ Разместить</a>
+    <label for="modal-toggle" style="cursor: pointer;">Вход и регистрация</label>
+  </nav>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- Чекбокс для управления видимостью модального окна -->
+  <input type="checkbox" id="modal-toggle">
+
+  <!-- Модальное окно -->
+  <div class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="brand-logos">
+          <!-- Здесь могут быть логотипы DeWalt и JCB -->
+        </div>
+        <div class="brand-name">Регистрация</div>
+        <!-- Кнопка закрытия -->
+        <label for="modal-toggle" class="close-btn">×</label>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Полное имя</label>
+            <input type="text" id="name" placeholder="Введите ваше имя" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" placeholder="Создайте пароль" required>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">
+              Я соглашаюсь с <a href="#">условиями использования</a> и
+              <a href="#">политикой конфиденциальности</a>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-register">Зарегистрироваться</button>
+
+          <div class="login-link">
+            Уже есть аккаунт? <a href="#">Войти</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Помощь</h4>
+        <a href="#">Как разместить объявление</a>
+        <a href="#">Безопасность сделки</a>
+        <a href="#">Частые вопросы</a>
+      </div>
+      <div>
+        <h4>О нас</h4>
+        <p>SpecTrade — площадка для аренды и поиска спецтехники по всей России.</p>
+        <p>© <span id="year"></span> SpecTrade</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <p>support@spectrade.example</p>
+        <p>+7 (800) 555-35-35</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.mobile-nav');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      toggle.classList.toggle('active');
+    });
+  </script>
+</body>
+
+</html>
